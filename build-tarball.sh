@@ -34,6 +34,8 @@ export GNULIB_SRCDIR=`pwd`/gnulib
 cd "$package"
 # Force use of the newest gnulib.
 rm -f .gitmodules
+# Create a gzip-compressed tarball.
+sed -i -e 's/no-dist-gzip//' configure.ac
 
 # Fetch extra files and generate files (uses packages wget, python3, automake, autoconf, m4).
 date --utc --iso-8601 > .tarball-version
