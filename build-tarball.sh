@@ -31,6 +31,9 @@ cd "$package"
 # Force use of the newest gnulib.
 rm -f .gitmodules
 
+# Apply patches.
+(cd "$package" && patch -p1 < ../patches/0001-tight-scope.patch)
+
 # Fetch extra files and generate files (uses packages wget, python3, automake, autoconf, m4).
 date --utc --iso-8601 > .tarball-version
 ./bootstrap --no-git --gnulib-srcdir="$GNULIB_SRCDIR"
