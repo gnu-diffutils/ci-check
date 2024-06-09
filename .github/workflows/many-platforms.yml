@@ -54,7 +54,7 @@ jobs:
       - run: pwd
       # Install Ubuntu packages.
       # List of packages: https://packages.ubuntu.com/
-      - run: sudo apt install autopoint gperf help2man gettext gcc-12
+      - run: sudo apt install autopoint gperf help2man gettext gcc-12 texlive
       - run: |
           sudo ln -sf gcc-12 /usr/bin/gcc
           ./build-tarball.sh '${{ env.package }}'
