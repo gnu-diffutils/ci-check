@@ -27,12 +27,13 @@ set -e
 git clone --depth 1 https://git.savannah.gnu.org/git/"$package".git
 git clone --depth 1 https://git.savannah.gnu.org/git/gnulib.git
 export GNULIB_SRCDIR=`pwd`/gnulib
-cd "$package"
-# Force use of the newest gnulib.
-rm -f .gitmodules
 
 # Apply patches.
 (cd "$package" && patch -p1 < ../patches/0001-tight-scope.patch)
+
+cd "$package"
+# Force use of the newest gnulib.
+rm -f .gitmodules
 
 # Fetch extra files and generate files (uses packages wget, python3, automake, autoconf, m4).
 date --utc --iso-8601 > .tarball-version
