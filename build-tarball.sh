@@ -29,7 +29,7 @@ git clone --depth 1 https://git.savannah.gnu.org/git/gnulib.git
 export GNULIB_SRCDIR=`pwd`/gnulib
 
 # Apply patches.
-(cd "$package" && patch -p1 < ../patches/0001-tight-scope.patch)
+#(cd "$package" && patch -p1 < ../patches/...)
 
 cd "$package"
 # Force use of the newest gnulib.
