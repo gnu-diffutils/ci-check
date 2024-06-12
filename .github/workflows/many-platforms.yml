@@ -104,7 +104,7 @@ jobs:
       - run: |
           pwd
           export CPPFLAGS="-Wall"
-          ./build-on.sh '${{ env.package }}' '' 'make'
+          ./build-on.sh '${{ env.package }}' '' 'make' ''
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -147,7 +147,7 @@ jobs:
             cd /work
             ls -l
             export CPPFLAGS="-Wall"
-            ./build-on.sh '${{ env.package }}' '' 'make'
+            ./build-on.sh '${{ env.package }}' '' 'make' ''
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -190,7 +190,7 @@ jobs:
             cd /work
             ls -l
             export CPPFLAGS="-Wall"
-            ./build-on.sh '${{ env.package }}' '' 'make'
+            ./build-on.sh '${{ env.package }}' '' 'make' 'apk add musl-libintl'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -204,6 +204,12 @@ jobs:
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
             ${{ env.package }}-*/build/gnulib-tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
+            ${{ env.package }}-*/build-full/gnulib-tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-macos:
@@ -232,8 +238,9 @@ jobs:
       # - run: brew install ...
       - run: |
           pwd
-          export CPPFLAGS="-Wall"
-          ./build-on.sh '${{ env.package }}' '' 'make'
+          export CPPFLAGS="-I$HOME/include -I${HOMEBREW_PREFIX-/usr/local}/opt/gettext/include -Wall"
+          export LDFLAGS="-L$HOME/lib -L${HOMEBREW_PREFIX-/usr/local}/opt/gettext/lib"
+          ./build-on.sh '${{ env.package }}' '' 'make' ${{ matrix.os == 'macos-14' && 'brew install gettext' || '' }}
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -247,6 +254,12 @@ jobs:
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
             ${{ env.package }}-*/build/gnulib-tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
+            ${{ env.package }}-*/build-full/gnulib-tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-freebsd:
@@ -281,7 +294,7 @@ jobs:
             ls -l
             export CPPFLAGS="-I/usr/local/include -Wall"
             export LDFLAGS="-L/usr/local/lib"
-            ./build-on.sh '${{ env.package }}' '' 'make'
+            ./build-on.sh '${{ env.package }}' '' 'make' 'pkg install -y gettext-runtime'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -295,6 +308,12 @@ jobs:
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
             ${{ env.package }}-*/build/gnulib-tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
+            ${{ env.package }}-*/build-full/gnulib-tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-netbsd:
@@ -330,7 +349,7 @@ jobs:
             ls -l
             export CPPFLAGS="-I/usr/pkg/include -Wall"
             export LDFLAGS="-L/usr/pkg/lib"
-            ./build-on.sh '${{ env.package }}' '' 'make'
+            ./build-on.sh '${{ env.package }}' '' 'make' '/usr/sbin/pkg_add gettext-lib'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -344,6 +363,12 @@ jobs:
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
             ${{ env.package }}-*/build/gnulib-tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
+            ${{ env.package }}-*/build-full/gnulib-tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-openbsd:
@@ -381,7 +406,7 @@ jobs:
             ls -l
             export CPPFLAGS="-I/usr/local/include -Wall"
             export LDFLAGS="-L/usr/local/lib"
-            ./build-on.sh '${{ env.package }}' '' 'make'
+            ./build-on.sh '${{ env.package }}' '' 'make' ''
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -433,7 +458,7 @@ jobs:
             export LANG=en_US.UTF-8
             export CPPFLAGS="-Wall"
             export CC="gcc -m64"
-            ./build-on.sh '${{ env.package }}' '' 'make'
+            ./build-on.sh '${{ env.package }}' '' 'make' ''
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -480,7 +505,7 @@ jobs:
             pwd
             ls -l
             export CPPFLAGS="-Wall"
-            ./build-on.sh '${{ env.package }}' '' 'gmake'
+            ./build-on.sh '${{ env.package }}' '' 'gmake' ''
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -543,7 +568,7 @@ jobs:
       - name: Build in Cygwin
         run: |
           export CPPFLAGS="-Wall"
-          ./build-on.sh '${{ env.package }}' '' 'make'
+          ./build-on.sh '${{ env.package }}' '' 'make' ''
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -610,7 +635,7 @@ jobs:
           PATH=/usr/${{ matrix.bitness == 32 && 'i686' || 'x86_64' }}-w64-mingw32/sys-root/mingw/bin:$PATH
           export CPPFLAGS="-Wall"
           export CC=${{ matrix.bitness == 32 && 'i686' || 'x86_64' }}-w64-mingw32-gcc
-          ./build-on.sh '${{ env.package }}' '--host=${{ matrix.bitness == 32 && 'i686' || 'x86_64' }}-w64-mingw32' 'make'
+          ./build-on.sh '${{ env.package }}' '--host=${{ matrix.bitness == 32 && 'i686' || 'x86_64' }}-w64-mingw32' 'make' ''
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -712,7 +737,7 @@ jobs:
           export STRIP=":"
           export AR="`pwd`/ar-lib lib"
           export RANLIB=":"
-          ./build-on.sh '${{ env.package }}' '--host=${{ matrix.bitness == 32 && 'i686' || 'x86_64' }}-w64-mingw32' 'make'
+          ./build-on.sh '${{ env.package }}' '--host=${{ matrix.bitness == 32 && 'i686' || 'x86_64' }}-w64-mingw32' 'make' ''
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -754,7 +779,7 @@ jobs:
           export CC="clang -fsanitize=address,undefined,signed-integer-overflow,shift,integer-divide-by-zero"
           export CFLAGS="-O0 -fno-omit-frame-pointer -ggdb"
           export ASAN_OPTIONS="detect_leaks=0 abort_on_error=1 allocator_may_return_null=1"
-          ./build-on.sh '${{ env.package }}' '' 'make'
+          ./build-on.sh '${{ env.package }}' '' 'make' ''
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
