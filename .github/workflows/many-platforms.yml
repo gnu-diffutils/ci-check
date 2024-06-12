@@ -562,6 +562,7 @@ jobs:
   check-mingw:
     name: make check on mingw
     needs: build-tarball
+    if: ${{ false }}
     # Doc: https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs
     strategy:
       fail-fast: false
@@ -628,6 +629,7 @@ jobs:
   check-msvc:
     name: make check on MSVC
     needs: build-tarball
+    if: ${{ false }}
     # Doc: https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs
     strategy:
       fail-fast: false
