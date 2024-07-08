@@ -149,7 +149,7 @@ jobs:
             cd /work
             ls -l
             export CPPFLAGS="-Wall"
-            ./build-on.sh '${{ env.package }}' '' 'make' ''
+            ./build-on.sh '${{ env.package }}' '' 'make' 'yum -y install perl'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -196,7 +196,7 @@ jobs:
             cd /work
             ls -l
             export CPPFLAGS="-Wall"
-            ./build-on.sh '${{ env.package }}' '' 'make' ''
+            ./build-on.sh '${{ env.package }}' '' 'make' 'yum -y install perl'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -239,7 +239,7 @@ jobs:
             cd /work
             ls -l
             export CPPFLAGS="-Wall"
-            ./build-on.sh '${{ env.package }}' '' 'make' 'apk add musl-libintl musl-locales'
+            ./build-on.sh '${{ env.package }}' '' 'make' 'apk add musl-libintl musl-locales perl'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -343,7 +343,7 @@ jobs:
             ls -l
             export CPPFLAGS="-I/usr/local/include -Wall"
             export LDFLAGS="-L/usr/local/lib"
-            ./build-on.sh '${{ env.package }}' '' 'make' 'pkg install -y gettext-runtime'
+            ./build-on.sh '${{ env.package }}' '' 'make' 'pkg install -y gettext-runtime perl5'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
@@ -398,7 +398,7 @@ jobs:
             ls -l
             export CPPFLAGS="-I/usr/pkg/include -Wall"
             export LDFLAGS="-L/usr/pkg/lib"
-            ./build-on.sh '${{ env.package }}' '' 'make' '/usr/sbin/pkg_add gettext-lib'
+            ./build-on.sh '${{ env.package }}' '' 'make' '/usr/sbin/pkg_add gettext-lib perl'
       # Doc: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
       #      https://github.com/actions/upload-artifact?tab=readme-ov-file#usage
       - if: ${{ always() }}
