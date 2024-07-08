@@ -118,6 +118,12 @@ jobs:
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
             ${{ env.package }}-*/build/gnulib-tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
+            ${{ env.package }}-*/build-full/gnulib-tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-linux-gnu-centos:
@@ -163,6 +169,12 @@ jobs:
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
             ${{ env.package }}-*/build/gnulib-tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
+            ${{ env.package }}-*/build-full/gnulib-tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-linux-gnu-alma:
@@ -210,6 +222,12 @@ jobs:
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
             ${{ env.package }}-*/build/gnulib-tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
+            ${{ env.package }}-*/build-full/gnulib-tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-linux-alpine:
@@ -469,6 +487,12 @@ jobs:
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
             ${{ env.package }}-*/build/gnulib-tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
+            ${{ env.package }}-*/build-full/gnulib-tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-solaris11:
@@ -521,6 +545,12 @@ jobs:
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
             ${{ env.package }}-*/build/gnulib-tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
+            ${{ env.package }}-*/build-full/gnulib-tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-solaris11-omnios:
@@ -568,6 +598,12 @@ jobs:
             ${{ env.package }}-*/build/log[123]
             ${{ env.package }}-*/build/tests/test-suite.log
             ${{ env.package }}-*/build/gnulib-tests/test-suite.log
+            ${{ env.package }}-*/build-full/config.cache
+            ${{ env.package }}-*/build-full/config.log
+            ${{ env.package }}-*/build-full/config.status
+            ${{ env.package }}-*/build-full/log[123]
+            ${{ env.package }}-*/build-full/tests/test-suite.log
+            ${{ env.package }}-*/build-full/gnulib-tests/test-suite.log
           retention-days: 7
           overwrite: true
   check-cygwin:
