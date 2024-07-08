@@ -305,6 +305,7 @@ jobs:
       # - run: brew install ...
       - run: |
           pwd
+          PATH=${HOMEBREW_PREFIX-/usr/local}/opt/valgrind/bin:/usr/local/bin:$PATH
           export CPPFLAGS="-I$HOME/include -I${HOMEBREW_PREFIX-/usr/local}/opt/gettext/include -Wall"
           export LDFLAGS="-L$HOME/lib -L${HOMEBREW_PREFIX-/usr/local}/opt/gettext/lib"
           ./build-on.sh '${{ env.package }}' '' 'make' ${{ matrix.os == 'macos-14' && 'brew install gettext' || 'brew install valgrind' }}
