@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (C) 2024 Free Software Foundation, Inc.
+# Copyright (C) 2024-2025 Free Software Foundation, Inc.
 #
 # This file is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published
@@ -16,7 +16,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 # This script builds a tarball of the package on a single platform.
-# Usage: build-on.sh PACKAGE CONFIGURE_OPTIONS MAKE
+# Usage: build-on.sh PACKAGE CONFIGURE_OPTIONS MAKE INSTALL_OPTIONAL_DEPENDENCIES_COMMAND
 
 package="$1"
 configure_options="$2"
@@ -39,10 +39,10 @@ cd build
 ../configure --config-cache $configure_options > log1 2>&1; rc=$?; cat log1; test $rc = 0 || exit 1
 
 # Build.
-$make > log2 2>&1; rc=$?; cat log2; test $rc = 0 || exit 1
+$make V=1 > log2 2>&1; rc=$?; cat log2; test $rc = 0 || exit 1
 
 # Run the tests.
-$make check > log3 2>&1; rc=$?; cat log3; test $rc = 0 || exit 1
+$make check V=1 > log3 2>&1; rc=$?; cat log3; test $rc = 0 || exit 1
 
 cd ..
 
@@ -58,10 +58,10 @@ if test -n "$install_optional_dependencies_command"; then
   ../configure --config-cache $configure_options > log1 2>&1; rc=$?; cat log1; test $rc = 0 || exit 1
 
   # Build.
-  $make > log2 2>&1; rc=$?; cat log2; test $rc = 0 || exit 1
+  $make V=1 > log2 2>&1; rc=$?; cat log2; test $rc = 0 || exit 1
 
   # Run the tests.
-  $make check > log3 2>&1; rc=$?; cat log3; test $rc = 0 || exit 1
+  $make check V=1 > log3 2>&1; rc=$?; cat log3; test $rc = 0 || exit 1
 
   cd ..
 fi
