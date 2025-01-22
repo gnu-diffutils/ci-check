@@ -1,0 +1,12 @@
+diff --git a/bootstrap.conf b/bootstrap.conf
+index 92ff61a..9748e26 100644
+--- a/bootstrap.conf
++++ b/bootstrap.conf
+@@ -21,6 +21,7 @@ avoided_gnulib_modules='
+   --avoid=mbuiter
+   --avoid=mbuiterf
+   --avoid=setlocale
++  --avoid=memchr-tests
+ '
+ 
+ # gnulib modules used by this package.
