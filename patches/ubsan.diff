@@ -2,10 +2,10 @@ diff --git a/bootstrap.conf b/bootstrap.conf
 index 92ff61a..9748e26 100644
 --- a/bootstrap.conf
 +++ b/bootstrap.conf
-@@ -21,6 +21,7 @@ avoided_gnulib_modules='
-   --avoid=mbuiter
+@@ -22,6 +22,7 @@ avoided_gnulib_modules='
    --avoid=mbuiterf
    --avoid=setlocale
+   --avoid=year2038-tests
 +  --avoid=memchr-tests
  '
  
