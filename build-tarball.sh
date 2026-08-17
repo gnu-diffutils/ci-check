@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (C) 2024-2025 Free Software Foundation, Inc.
+# Copyright (C) 2024-2026 Free Software Foundation, Inc.
 #
 # This file is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published
@@ -32,7 +32,6 @@ export GNULIB_SRCDIR=`pwd`/gnulib
 
 # Apply patches.
 (cd "$package" && patch -p1 < ../patches/cygwin32-failure.patch)
-(cd "$package" && patch -p1 < ../patches/ubsan.diff)
 
 cd "$package"
 # Force use of the newest gnulib.
